@@ -12,8 +12,16 @@
 ?>
 <p <?php echo get_block_wrapper_attributes(); ?>>
 	<?php
+	$before_text = isset( $attributes['beforeText'] ) ? (string) $attributes['beforeText'] : '';
+	$after_text = isset( $attributes['afterText'] ) ? (string) $attributes['afterText'] : '';
 	$counts = wp_count_posts( 'post' );
 	$published_count = isset( $counts->publish ) ? (int) $counts->publish : 0;
-	echo esc_html( $published_count );
+	echo esc_html( $before_text );
+	printf(
+		'<span class="%s">%s</span>',
+		esc_attr( 'sbird-posts-number-block__count' ),
+		esc_html( (string) $published_count )
+	);
+	echo esc_html( $after_text );
 	?>
 </p>

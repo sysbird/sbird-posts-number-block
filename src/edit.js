@@ -4,14 +4,8 @@
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-i18n/
  */
 import { __ } from '@wordpress/i18n';
-
-/**
- * React hook that is used to mark the block wrapper element.
- * It provides all the necessary props like the class name.
- *
- * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
- */
-import { useBlockProps } from '@wordpress/block-editor';
+import { useBlockProps, InspectorControls } from '@wordpress/block-editor';
+import { PanelBody, TextControl } from '@wordpress/components';
 
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
@@ -27,13 +21,37 @@ import { useBlockProps } from '@wordpress/block-editor';
  *
  * @return {Element} Element to render.
  */
-export default function Edit() {
+export default function Edit( { attributes, setAttributes } ) {
+	const { beforeText, afterText } = attributes;
+	const previewCount = 'XXX';
+
 	return (
-		<p { ...useBlockProps() }>
-			{ __(
-				'Post Number',
-				'sbird-posts-number-block'
-			) }
-		</p>
+		<>
+			<InspectorControls>
+				<PanelBody title={ __( 'Label', 'sbird-posts-number-block' ) }>
+					<TextControl
+						label={ __( 'Before', 'sbird-posts-number-block' ) }
+						value={ beforeText }
+						onChange={ ( value ) =>
+							setAttributes( { beforeText: value } )
+						}
+					/>
+					<TextControl
+						label={ __( 'After', 'sbird-posts-number-block' ) }
+						value={ afterText }
+						onChange={ ( value ) =>
+							setAttributes( { afterText: value } )
+						}
+					/>
+				</PanelBody>
+			</InspectorControls>
+			<p { ...useBlockProps() }>
+				{ beforeText }
+				<span className="sbird-posts-number-block__count">
+					{ previewCount }
+				</span>
+				{ afterText }
+			</p>
+		</>
 	);
 }

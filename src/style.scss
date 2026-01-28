@@ -5,8 +5,14 @@
  * Replace them with your own styles or remove the file completely.
  */
 
-.wp-block-create-block-sbird-posts-number-block {
-	background-color: #21759b;
-	color: #fff;
+.editor-styles-wrapper .wp-block-create-block-sbird-posts-number-block {
+	background-color: #F5F5F5;
 	padding: 2px;
+}
+
+
+.sbird-posts-number-block__count {
+	font-size: 1.1em;
+	font-weight: bold;
+	padding: 0 5px;
 }

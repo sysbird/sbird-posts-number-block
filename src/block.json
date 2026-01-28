@@ -11,6 +11,16 @@
 	"supports": {
 		"html": false
 	},
+	"attributes": {
+		"beforeText": {
+			"type": "string",
+			"default": ""
+		},
+		"afterText": {
+			"type": "string",
+			"default": ""
+		}
+	},
 	"textdomain": "sbird-posts-number-block",
 	"editorScript": "file:./index.js",
 	"style": "file:./style.css",
